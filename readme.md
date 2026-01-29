@@ -529,7 +529,7 @@ docker-compose logs -f db
 ## 👤 Autor
 
 **Cristobal Canto**
-- GitHub: [@tu-usuario](https://github.com/CristobalRodriguezCh)
+- GitHub: [@CristobalRodriguezCh](https://github.com/CristobalRodriguezCh)
 - Email: cantoniorodriguez2307@gmail.com
 ---
 
