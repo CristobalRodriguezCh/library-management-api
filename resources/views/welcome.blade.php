@@ -160,7 +160,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <script>
-            var readmeContent = {!! json_encode(file_get_contents(base_path('README.md'))) !!};
+            var readmeContent = {!! json_encode(file_exists(base_path('README.md')) ? file_get_contents(base_path('README.md')) : '# Library Management API\n\nBienvenido a la API de gestión de biblioteca.') !!};
             document.getElementById('readme-content').innerHTML = marked.parse(readmeContent);
         </script>
     </body>
