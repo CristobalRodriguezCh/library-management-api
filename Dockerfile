@@ -25,6 +25,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Instalar extensiones PHP
 RUN docker-php-ext-install pdo pdo_pgsql mbstring exif pcntl bcmath gd zip
 
+COPY README.md /var/www/README.md
 
 # Instalar Composer 2.2
 COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
