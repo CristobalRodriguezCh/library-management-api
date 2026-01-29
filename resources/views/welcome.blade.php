@@ -385,8 +385,8 @@ docker-compose exec app chown -R www-data:www-data storage bootstrap/cache</code
 
             <h3>Flujo de Autenticación</h3>
             <ol>
-                <li><strong>Registrar usuario:</strong> <code>POST /api/v1/register</code></li>
-                <li><strong>Login:</strong> <code>POST /api/v1/login</code> → Obtener token</li>
+                <li><strong>Registrar usuario:</strong> <code>POST /api/v1/auth/register</code></li>
+                <li><strong>Login:</strong> <code>POST /api/v1/auth/login</code> → Obtener token</li>
                 <li><strong>Usar el token</strong> en todas las peticiones protegidas</li>
             </ol>
 
@@ -399,27 +399,27 @@ docker-compose exec app chown -R www-data:www-data storage bootstrap/cache</code
             <h4>Registro de Usuario</h4>
             <div class="endpoint-block">
                 <span class="badge badge-method post">POST</span>
-                <span class="url">/api/v1/register</span>
+                <span class="url">/api/v1/auth/register</span>
                 <div class="header">Content-Type: application/json</div>
                 <pre><code>{
-  "name": "Juan Pérez",
-  "email": "juan@example.com",
-  "password": "password123",
-  "password_confirmation": "password123",
-  "birth_date": "1990-01-15",
-  "role": "user"
-}</code></pre>
-            </div>
+                "name": "Juan Pérez",
+                "email": "juan@example.com",
+                "password": "password123",
+                "password_confirmation": "password123",
+                "birth_date": "1990-01-15",
+                "role": "user"
+                }</code></pre>
+                            </div>
 
-            <h4>Login</h4>
-            <div class="endpoint-block">
-                <span class="badge badge-method post">POST</span>
-                <span class="url">/api/v1/login</span>
-                <div class="header">Content-Type: application/json</div>
-                <pre><code>{
-  "email": "juan@example.com",
-  "password": "password123"
-}</code></pre>
+                            <h4>Login</h4>
+                            <div class="endpoint-block">
+                                <span class="badge badge-method post">POST</span>
+                                <span class="url">/api/v1/auth/login</span>
+                                <div class="header">Content-Type: application/json</div>
+                                <pre><code>{
+                "email": "juan@example.com",
+                "password": "password123"
+                }</code></pre>
             </div>
 
             <h4>Obtener Usuario Autenticado</h4>

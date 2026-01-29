@@ -150,8 +150,8 @@ Authorization: Bearer {tu_token_jwt}
 
 ### Flujo de Autenticación
 
-1. **Registrar usuario:** `POST /api/v1/register`
-2. **Login:** `POST /api/v1/login` → Obtener token
+1. **Registrar usuario:** `POST /api/v1/auth/register`
+2. **Login:** `POST /api/v1/auth/login` → Obtener token
 3. **Usar el token** en todas las peticiones protegidas
 
 ## 🔗 Endpoints
@@ -160,7 +160,7 @@ Authorization: Bearer {tu_token_jwt}
 
 #### Registro de Usuario
 ```http
-POST /api/v1/register
+POST /api/v1/auth/register
 Content-Type: application/json
 
 {
@@ -195,7 +195,7 @@ Content-Type: application/json
 
 #### Login
 ```http
-POST /api/v1/login
+POST /api/v1/auth/login
 Content-Type: application/json
 
 {
