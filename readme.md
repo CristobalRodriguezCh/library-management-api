@@ -484,13 +484,6 @@ Todas las tablas incluyen:
 - `deleted_at` (soft delete)
 - `created_by`, `updated_by`, `deleted_by` (auditoría de usuario)
 
-## 🧪 Testing
-
-(Opcional - Si decides agregar tests básicos)
-```bash
-docker-compose exec app php artisan test
-```
-
 ## 🐛 Troubleshooting
 
 ### Error de permisos
