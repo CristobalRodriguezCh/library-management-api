@@ -1,0 +1,55 @@
+FROM php:7.1-fpm
+
+# Configurar repositorios archivados
+RUN echo "deb http://archive.debian.org/debian/ buster main" > /etc/apt/sources.list && \
+    echo "deb http://archive.debian.org/debian-security buster/updates main" >> /etc/apt/sources.list && \
+    echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/90ignore-release-date
+
+# Instalar dependencias
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    libpq-dev \
+    libzip-dev \
+    nginx \
+    supervisor \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Instalar extensiones PHP
+RUN docker-php-ext-install pdo pdo_pgsql mbstring exif pcntl bcmath gd zip
+
+# Instalar Composer
+COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
+
+# Configurar directorio de trabajo
+WORKDIR /var/www
+
+# Copiar archivos
+COPY . /var/www
+
+# Instalar dependencias de Composer (producción)
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# Permisos
+RUN chown -R www-data:www-data /var/www && \
+    chmod -R 775 storage bootstrap/cache
+
+# Configurar Nginx
+COPY docker/nginx/render.conf /etc/nginx/sites-available/default
+
+# Configurar Supervisor
+COPY docker/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Exponer puerto
+EXPOSE 8000
+
+# Script de inicio
+COPY docker/start.sh /start.sh
+RUN chmod +x /start.sh
+
+CMD ["/start.sh"]
